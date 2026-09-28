@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SkyCast Pakistan | Weather Dashboard</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <div id="toast" class="toast"></div>
+
+  <main class="app">
+
+    <header class="topbar">
+
+      <div class="brand">
+
+        <div class="logo">
+          ¤
+        </div>
+
+        <div>
+          <div class="brand-name">
+            SkyCast
+          </div>
+
+          <div class="brand-subtitle">
+            Pakistan Weather
+          </div>
+        </div>
+
+      </div>
+
+      <div class="top-actions">
+
+        <div class="live">
+          <span></span>
+          <label id="updated">Live data</label>
+        </div>
+
+        <button id="unitButton">
+          °C
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          LOCAL FORECAST
+        </div>
+
+        <h1>
+          Weather that feels
+          <span>close to home.</span>
+        </h1>
+
+        <p>
+          Search any city, town, or district in Pakistan and
+          get real-time weather information powered by Open-Meteo.
+        </p>
+
+
+        <form id="searchForm" class="search">
+
+          <span>?</span>
+
+          <input
+            id="locationInput"
+            type="search"
+            placeholder="Search Lahore, Bhakkar, Islamabad..."
+            autocomplete="off"
+          >
+
+          <button>
+            Search
+          </button>
+
+        </form>
+
+
+        <div id="searchResults" class="results hidden"></div>
+
+
+        <div class="quick">
+
+          <span>Quick locations</span>
+
+          <button data-city="Lahore">Lahore</button>
+          <button data-city="Bhakkar">Bhakkar</button>
+          <button data-city="Islamabad">Islamabad</button>
+          <button data-city="Karachi">Karachi</button>
+          <button data-city="Peshawar">Peshawar</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="current-card">
+
+        <div class="current-header">
+
+          <div>
+
+            <div class="location">
+              ?
+              <span id="location">
+                Lahore, Pakistan
+              </span>
+            </div>
+
+            <div id="date">
+              Loading...
+            </div>
+
+          </div>
+
+          <div id="day" class="day">
+            DAY
+          </div>
+
+        </div>
+
+
+        <div class="current-main">
+
+          <div id="weatherIcon" class="weather-icon">
+            ??
+          </div>
+
+          <div>
+
+            <div id="temperature" class="temperature">
+              --°
+            </div>
+
+            <div id="condition" class="condition">
+              Loading weather...
+            </div>
+
+            <div id="feels">
+              Feels like --°
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <div class="metrics">
+
+          <div>
+            <span>??</span>
+            <small>Humidity</small>
+            <strong id="humidity">--%</strong>
+          </div>
+
+          <div>
+            <span>??</span>
+            <small>Wind</small>
+            <strong id="wind">-- km/h</strong>
+          </div>
+
+          <div>
+            <span>??</span>
+            <small>Clouds</small>
+            <strong id="clouds">--%</strong>
+          </div>
+
+          <div>
+            <span>?</span>
+            <small>Pressure</small>
+            <strong id="pressure">-- hPa</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-header">
+
+        <div>
+          <div class="eyebrow">
+            FORECAST
+          </div>
+
+          <h2>
+            Next 7 days
+          </h2>
+        </div>
+
+        <span>
+          Updated automatically
+        </span>
+
+      </div>
+
+
+      <div id="forecast" class="forecast"></div>
+
+    </section>
+
+
+    <section class="bottom-grid">
+
+
+      <div class="card">
+
+        <div class="card-title">
+
+          <div>
+            <div class="eyebrow">
+              TODAY
+            </div>
+
+            <h3>
+              Weather details
+            </h3>
+          </div>
+
+          <span>?</span>
+
+        </div>
+
+
+        <div class="details">
+
+          <div>
+            <span>?? Sunrise</span>
+            <strong id="sunrise">--</strong>
+          </div>
+
+          <div>
+            <span>?? Sunset</span>
+            <strong id="sunset">--</strong>
+          </div>
+
+          <div>
+            <span>??? Rain chance</span>
+            <strong id="rain">--%</strong>
+          </div>
+
+          <div>
+            <span>?? UV index</span>
+            <strong id="uv">--</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-title">
+
+          <div>
+            <div class="eyebrow">
+              NEXT HOURS
+            </div>
+
+            <h3>
+              Hourly outlook
+            </h3>
+          </div>
+
+          <span>?</span>
+
+        </div>
+
+        <div id="hourly" class="hourly"></div>
+
+      </div>
+
+    </section>
+
+
+    <footer>
+
+      <strong>
+        SkyCast Pakistan
+      </strong>
+
+      <span>
+        Weather data provided by
+        <a href="https://open-meteo.com/" target="_blank">
+          Open-Meteo
+        </a>
+      </span>
+
+    </footer>
+
+  </main>
+
+  <script src="/app.js"></script>
+
+</body>
+</html>
